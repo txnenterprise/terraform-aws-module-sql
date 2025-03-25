@@ -5,11 +5,11 @@ resource "random_password" "sql" {
 }
 
 resource "postgresql_role" "user" {
-  name               = var.username
+  name               = var.db_username
   login              = true
   password           = random_password.sql.result
   encrypted_password = true
   depends_on = [
-    random_password.mq
+    random_password.sql
   ]
 }
